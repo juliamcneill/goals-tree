@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
 import "./style.scss";
 
 interface MyState {}
@@ -8,6 +9,17 @@ class App extends React.Component<{}, MyState> {
   constructor(props: {}) {
     super(props);
     this.state = {};
+  }
+
+  componentDidMount() {
+    axios
+      .get("/goals")
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {

@@ -14,7 +14,7 @@ app.get("/route", (req, res) => {
   res.status(200).json("Server is working!");
 });
 
-app.get("/database", (req, res) => {
+app.get("/goals", (req, res) => {
   connection.query(`SELECT * FROM goals`, function (error, results) {
     if (error) {
       res.sendStatus(500);
