@@ -3,22 +3,22 @@
 body {
   font-family: "Work Sans", Helvetica, sans-serif;
   margin: 20px;
-  color: #2c3e50;
-}
-
-header {
-  width: 80%;
-  margin: auto;
+  color: darkslategrey;
 }
 
 .goals {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-flow: column;
   column-gap: 10px;
 }
 
 .goal {
   padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: gainsboro;
+  border: 2px solid darkslategrey;
 }
 
 .life-goal {

@@ -18,9 +18,28 @@ class App extends React.Component<{}, MyState> {
         </header>
         <div className="goals">
           <div className="goal life-goal">Example life goal</div>
+          <div className="goal life-goal">Example life goal</div>
+          <div className="goal year-goal">Example year goal</div>
+          <div className="goal year-goal">Example year goal</div>
+          <div className="goal year-goal">Example year goal</div>
           <div className="goal year-goal">Example year goal</div>
           <div className="goal month-goal">Example month goal</div>
+          <div className="goal month-goal">Example month goal</div>
+          <div className="goal month-goal">Example month goal</div>
+          <div className="goal month-goal">Example month goal</div>
+          <div className="goal month-goal">Example month goal</div>
           <div className="goal week-goal">Example week goal</div>
+          <div className="goal week-goal">Example week goal</div>
+          <div className="goal week-goal">Example week goal</div>
+          <div className="goal week-goal">Example week goal</div>
+          <div className="goal week-goal">Example week goal</div>
+          <div className="goal week-goal">Example week goal</div>
+          <div className="goal day-goal">Example day goal</div>
+          <div className="goal day-goal">Example day goal</div>
+          <div className="goal day-goal">Example day goal</div>
+          <div className="goal day-goal">Example day goal</div>
+          <div className="goal day-goal">Example day goal</div>
+          <div className="goal day-goal">Example day goal</div>
           <div className="goal day-goal">Example day goal</div>
         </div>
       </>
