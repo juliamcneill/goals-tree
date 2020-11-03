@@ -11,7 +11,20 @@ class App extends React.Component<{}, MyState> {
   }
 
   render() {
-    return <h1>Goals App</h1>;
+    return (
+      <>
+        <header>
+          <h1>Goals Tree</h1>
+        </header>
+        <div className="goals">
+          <div className="goal life-goal">Example life goal</div>
+          <div className="goal year-goal">Example year goal</div>
+          <div className="goal month-goal">Example month goal</div>
+          <div className="goal week-goal">Example week goal</div>
+          <div className="goal day-goal">Example day goal</div>
+        </div>
+      </>
+    );
   }
 }
 
