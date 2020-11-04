@@ -21,8 +21,7 @@ app.get("/goals/:period", (req, res) => {
     results
   ) {
     if (error) {
-      console.log(error);
-      res.sendStatus(500);
+      res.status(500).json(error);
     } else {
       res.status(200).json(results);
     }
