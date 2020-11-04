@@ -3,20 +3,58 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import "./style.scss";
 
-interface MyState {}
+interface MyState {
+  lifeGoals: Array<Goal>;
+  yearGoals: Array<Goal>;
+  monthGoals: Array<Goal>;
+  weekGoals: Array<Goal>;
+  dayGoals: Array<Goal>;
+}
+
+interface Goal {
+  id: number;
+  title: string;
+  description: string;
+  status: string;
+  date: Date;
+  life?: number;
+  year?: number;
+  month?: number;
+  week?: number;
+}
 
 class App extends React.Component<{}, MyState> {
   constructor(props: {}) {
     super(props);
-    this.state = {};
+    this.state = {
+      lifeGoals: [],
+      yearGoals: [],
+      monthGoals: [],
+      weekGoals: [],
+      dayGoals: [],
+    };
   }
 
   componentDidMount() {
+    let life = axios.get("/life-goals");
+    let year = axios.get("/year-goals");
+    let month = axios.get("/month-goals");
+    let week = axios.get("/week-goals");
+    let day = axios.get("/day-goals");
+
     axios
-      .get("/goals")
-      .then(({ data }) => {
-        console.log(data);
-      })
+      .all([life, year, month, week, day])
+      .then(
+        axios.spread((...results) => {
+          this.setState({
+            lifeGoals: results[0].data,
+            yearGoals: results[1].data,
+            monthGoals: results[2].data,
+            weekGoals: results[3].data,
+            dayGoals: results[4].data,
+          });
+        })
+      )
       .catch((error) => {
         console.log(error);
       });
@@ -30,38 +68,29 @@ class App extends React.Component<{}, MyState> {
         </header>
         <div className="goals">
           <div className="goal-column">
-            <div className="goal life-goal">Example life goal</div>
-            <div className="goal life-goal">Example life goal</div>
+            {this.state.lifeGoals.map((item) => (
+              <div className="goal life-goal">{item.title}</div>
+            ))}
           </div>
           <div className="goal-column">
-            <div className="goal year-goal">Example year goal</div>
-            <div className="goal year-goal">Example year goal</div>
-            <div className="goal year-goal">Example year goal</div>
-            <div className="goal year-goal">Example year goal</div>
+            {this.state.yearGoals.map((item) => (
+              <div className="goal year-goal">{item.title}</div>
+            ))}
           </div>
           <div className="goal-column">
-            <div className="goal month-goal">Example month goal</div>
-            <div className="goal month-goal">Example month goal</div>
-            <div className="goal month-goal">Example month goal</div>
-            <div className="goal month-goal">Example month goal</div>
-            <div className="goal month-goal">Example month goal</div>
+            {this.state.monthGoals.map((item) => (
+              <div className="goal month-goal">{item.title}</div>
+            ))}
           </div>
           <div className="goal-column">
-            <div className="goal week-goal">Example week goal</div>
-            <div className="goal week-goal">Example week goal</div>
-            <div className="goal week-goal">Example week goal</div>
-            <div className="goal week-goal">Example week goal</div>
-            <div className="goal week-goal">Example week goal</div>
-            <div className="goal week-goal">Example week goal</div>
+            {this.state.weekGoals.map((item) => (
+              <div className="goal week-goal">{item.title}</div>
+            ))}
           </div>
           <div className="goal-column">
-            <div className="goal day-goal">Example day goal</div>
-            <div className="goal day-goal">Example day goal</div>
-            <div className="goal day-goal">Example day goal</div>
-            <div className="goal day-goal">Example day goal</div>
-            <div className="goal day-goal">Example day goal</div>
-            <div className="goal day-goal">Example day goal</div>
-            <div className="goal day-goal">Example day goal</div>
+            {this.state.dayGoals.map((item) => (
+              <div className="goal day-goal">{item.title}</div>
+            ))}
           </div>
         </div>
       </>
