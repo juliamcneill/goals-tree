@@ -36,11 +36,11 @@ class App extends React.Component<{}, MyState> {
   }
 
   componentDidMount() {
-    let life = axios.get("/life-goals");
-    let year = axios.get("/year-goals");
-    let month = axios.get("/month-goals");
-    let week = axios.get("/week-goals");
-    let day = axios.get("/day-goals");
+    let life = axios.get("/goals/life");
+    let year = axios.get("/goals/year");
+    let month = axios.get("/goals/month");
+    let week = axios.get("/goals/week");
+    let day = axios.get("/goals/day");
 
     axios
       .all([life, year, month, week, day])

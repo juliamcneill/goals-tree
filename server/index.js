@@ -11,49 +11,17 @@ app.set("port", port);
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/../client/dist"));
 
-app.get("/life-goals", (req, res) => {
-  connection.query(`SELECT * FROM life_goals`, function (error, results) {
-    if (error) {
-      res.sendStatus(500);
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
+app.get("/goals/:period", (req, res) => {
+  if (!["life", "year", "month", "week", "day"].includes(req.params.period)) {
+    res.status(500).json("Table name is invalid.");
+  }
 
-app.get("/year-goals", (req, res) => {
-  connection.query(`SELECT * FROM year_goals`, function (error, results) {
+  connection.query(`SELECT * FROM ` + req.params.period + `_goals`, function (
+    error,
+    results
+  ) {
     if (error) {
-      res.sendStatus(500);
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
-
-app.get("/month-goals", (req, res) => {
-  connection.query(`SELECT * FROM month_goals`, function (error, results) {
-    if (error) {
-      res.sendStatus(500);
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
-
-app.get("/week-goals", (req, res) => {
-  connection.query(`SELECT * FROM week_goals`, function (error, results) {
-    if (error) {
-      res.sendStatus(500);
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
-
-app.get("/day-goals", (req, res) => {
-  connection.query(`SELECT * FROM day_goals`, function (error, results) {
-    if (error) {
+      console.log(error);
       res.sendStatus(500);
     } else {
       res.status(200).json(results);
